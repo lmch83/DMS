@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <head jsf:id="head">
+        <title>DMS - Stoppages</title>
+        <link href="styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body jsf:id="body">
+        <div class="content">
+            <div class="header">
+                <h3>Downtime management system - Stoppages</h3>
+            </div>
+            <div class="status">
+                <div id="sleft">
+                    <label><b>User name:</b> Lukasz Chlodnicki</label>
+                    <label><b>Role:</b> MTL</label><br></br>
+                </div>
+                <div id="scenter">
+                    <h:outputText id="date"></h:outputText>
+                    <!-- script setting the field value to the current time and date -->
+                    <script type="text/javascript">
+                        var dt = new Date();
+                        var da = dt.toString().slice(0, 21);
+                        document.getElementById("date").innerHTML = da;
+                    </script>
+                </div>
+                <div id="sright">
+                    <a href="/DMSv1.3/LogoutServlet">Log out</a>
+                </div>
+                <div class="lineStatus">
+                    <b><h:outputText value="Select line: " styleClass="lineSel" /></b>
+                    <h:form>
+                        <h:selectOneMenu valueChangeListener="#{dataBean.lineChanged}" onchange="submit();" styleClass="lsel"> <!-- when the selection is made the line status will be retrieved from the database showing the current status -->
+                            <f:selectItem id="b1" value="#{stoppageBean.setLineID('B1')}" itemValue="B1" > <!-- update the managed bean parameter lineID -->                  
+                                <f:param name="line" value="B1"/></f:selectItem>
+                            <f:selectItem id="b2" value="#{stoppageBean.setLineID('B2')}" itemValue="B2" >
+                                <f:param name="line" value="B2"/></f:selectItem>
+                            <f:selectItem id="b3" value="#{stoppageBean.setLineID('B3')}" itemValue="B3" >
+                                <f:param name="line" value="B3"/></f:selectItem>
+                            <f:selectItem id="b4" value="#{stoppageBean.setLineID('B4')}" itemValue="B4" >
+                                <f:param name="line" value="B4"/></f:selectItem>
+                            <f:selectItem id="b5" value="#{stoppageBean.setLineID('B5')}" itemValue="B5" >
+                                <f:param name="line" value="B5"/></f:selectItem>
+                        </h:selectOneMenu>
+                        <b><h:outputText value="Line status: " styleClass="lsTop" /></b>
+                        <h:outputText id="statText" value="#{dataBean.currentStatus}" styleClass="currSt"/>
+       
+                    </h:form>
+                    <h:commandButton action="#{stoppageBean.populateDescriptions()}" value="Refresh" styleClass="refBtn"/> <!-- temporary refresh button until better solution is found to dynamically populate fault descriptions -->
+                </div>
+
+                <div class="mainArea">
+                    <div class="stTab">
+                        <h:form>
+                            <table>
+                                <tr>
+
+                                    <th id="area">Area</th>
+                                    <th id="strTim">Start time</th>
+                                    <th id="fdes">Fault description</th>
+                                    <th id="fdur">Duration</th>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <h:selectOneMenu onchange="submit()">
+                                            <f:selectItem value="#{stoppageBean.setArea('Bottle Blower')}" itemValue="Bottle Blower"> <!-- set areaID in managed bean -->
+                                                <f:param name="dArea" value="Bottle Blower" />
+                                            </f:selectItem>
+                                            <f:selectItem value="#{stoppageBean.setArea('Filler')}" itemValue="Filler">
+                                                <f:param name="dArea" value="Filler"/>
+                                            </f:selectItem>
+                                            <f:selectItem value="#{stoppageBean.setArea('Labeler')}" itemValue="Labeler">
+                                                <f:param name="dArea" value="Labeler"/>
+                                            </f:selectItem>
+                                            <f:selectItem value="#{stoppageBean.setArea('Case Packer')}" itemValue="Case Packer">
+                                                <f:param name="dArea" value="Case Packer"/>
+                                            </f:selectItem>
+                                            <f:selectItem value="#{stoppageBean.setArea('Palletiser')}" itemValue="Palletiser">
+                                                <f:param name="dArea" value="Palletiser"/>
+                                            </f:selectItem>
+                                        </h:selectOneMenu>
+                                    </td>
+                                    <td><h:outputText value="#{stoppageBean.startTime}" id="startTime" /></td> <!-- get current time -->
+                                    <td><h:inputText   id="descr" value="#{stoppageBean.descr}"  required="true" size="30" styleClass="desIN" /> <!-- set fault description attribute in managed bean -->
+
+                                    </td>
+                                    <td><h:outputText value="00:00" /></td> <!-- temporary value -->
+                                </tr>
+                                <tr>
+                                    <div class="buttons">
+                                        <h:commandButton action="#{stoppageBean.activateDowntime()}" value="Activate downtime" styleClass="actDow"/> <!-- trigger the method in managed bean that creates a new stoppage -->
+                                        <div class="requests">
+                                            <h:commandButton value="Request support" styleClass="actDow"/>
+                                            <div class="reqcontent">
+                                                <!-- the buttons below create a new request for different types of support required -->
+                                                <h:commandButton action="#{messageBean.makeRequest('r02', stoppageBean.stoppage.startTime, stoppageBean.stoppage.lineID, stoppageBean.stoppage.areaID, 'MTL')}" value="MTL" styleClass="actDow" />
+                                                <h:commandButton action="#{messageBean.makeRequest('r03', stoppageBean.stoppage.startTime, stoppageBean.stoppage.lineID, stoppageBean.stoppage.areaID, 'ENGINEER')}" value="Engineer" styleClass="actDow"/>
+                                                <h:commandButton action="#{messageBean.makeRequest('r04', stoppageBean.stoppage.startTime, stoppageBean.stoppage.lineID, stoppageBean.stoppage.areaID, 'ELECTRICIAN')}" value="Electrician" styleClass="actDow"/>
+                                                <h:commandButton action="#{messageBean.makeRequest('r05', stoppageBean.stoppage.startTime, stoppageBean.stoppage.lineID, stoppageBean.stoppage.areaID, 'SOM')}" value="SOM" styleClass="actDow"/>
+                                            </div>
+                                        </div>
+                                        <h:commandButton action="#{stoppageBean.deactivateDowntime()}" value="Deactivate downtime" styleClass="actDow"/>
+                                    </div>
+                                </tr>
+                            </table>
+                        </h:form>
+                    </div>
+                    <h:form styleClass="solution">
+                        <h:commandButton value="View solution" styleClass="viewBtn" />
+                        <h:commandButton value="Update solution" styleClass="updateBtn" /><br/>
+                        <h:inputTextarea value="#{stoppageBean.solution}" required="true" rows="5" cols="100" styleClass="solArea"/>
+                    </h:form>
+                             
+                </div>
+
+            </div>
+            <div class="navBar">
+                <a href="linesetup.xhtml">Line setup</a>
+                <a href="stoppages.xhtml">Stoppages</a>
+                <a href="messages.xhtml">Messages and Requests</a>
+                <a href="performance.xhtml">Performance and Efficiency</a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head jsf:id="head">
+        <title>DMS - Stoppages</title>
+        <link href="styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body jsf:id="body">
+        <div class="content">
+            <div class="header">
+                <h3>Downtime management system - Messages and Requests</h3>
+            </div>
+            <div class="status">
+                <div id="sleft">
+                    <label><b>User name:</b> Lukasz Chlodnicki</label>
+                    <label><b>Role:</b> ETL</label><br></br>
+                </div>
+                <div id="scenter">
+                    <h:outputText id="date"></h:outputText>
+                    <script type="text/javascript">
+                        var dt = new Date();
+                        var da = dt.toString().slice(0, 21);
+                        document.getElementById("date").innerHTML = da;
+                    </script>
+                </div>
+                <div id="sright">
+                    <a href="/DMSv1.3/LogoutServlet">Log out</a>
+                </div>
+                <div class="lineStatus">
+                    <b><h:outputText value="Select line: " styleClass="lineSel" /></b>
+                    <h:form>
+                        <h:selectOneMenu valueChangeListener="#{dataBean.lineChanged}" onchange="submit();" styleClass="lsel">
+                            <f:selectItem id="a2" value="#{dataBean.updateLineStatus('B1')}" itemValue="#{dataBean.line}"/>                          
+                            <f:selectItem id="a3"  value="#{dataBean.updateLineStatus('B2')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a4"  value="#{dataBean.updateLineStatus('B3')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a5"  value="#{dataBean.updateLineStatus('B4')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a6"  value="#{dataBean.updateLineStatus('B5')}" itemValue="#{dataBean.line}"/>
+                        </h:selectOneMenu>
+                        <b><h:outputText value="Line status: " styleClass="lsTop" /></b>
+                        <h:outputText id="statText" value="#{dataBean.currentStatus}" styleClass="currSt"/>
+                    </h:form>
+                </div>
+                <div class="mainArea">
+                    <div class="mainLeft">
+                        <div class="mlHead">
+                            <h4>Messages</h4>
+                        </div>
+                        <div class="mlMessages">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th id="tTime">Time received</th>
+                                        <th id="tFrom">From</th>
+                                        <th id="tMes">Message</th>
+                                        <th id="tSta">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="tTime">00:00</td>
+                                        <td id="tFrom">Typical Name</td>
+                                        <td id="tMes">Placeholder Placeholder</td>
+                                        <td id="tSta">
+                                            <h:commandButton value="Unread" styleClass="rdBtn" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mLeftNew">
+                            <h:inputTextarea id="ita" rows="10" cols="94" styleClass="newMes" value="Type new message..." /><br/>
+                            <h:commandButton onclick="clearArea()" value="Clear" styleClass="mBtn" />
+                            <h:commandButton value="Send" styleClass="mBtn" />
+                            <script type="text/javascript">
+                                function clearArea() {
+                                    document.getElementById("ita").value = "";
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mainRight">
+                        <div class="mrHead">
+                            <h4>Requests</h4>
+                        </div>
+                        <div class="mrRequests">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th id="rSel">Select</th>
+                                        <th id="rLin">Line</th>
+                                        <th id="rAre">Area</th>
+                                        <th id="rIss">Issue</th>
+                                        <th id="rSta">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio" name="select" style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio"  name="select" style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio"   name="select" style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio" name="select" style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio"  name="select"  style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rSel">
+                                            <input type="radio"  name="select"  style="width: 100%; align-content: center;"/>
+                                        </td>
+                                        <td id="rLin">B1</td>
+                                        <td id="rAre">Case Packer</td>
+                                        <td id="rIss">Issue</td>
+                                        <td id="rSta">Accepted</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="reqBtns">
+                                <h:commandButton value="Accept" styleClass="reqFun" />
+                                <h:commandButton value="Delay" styleClass="reqFun"/>
+                                <h:commandButton value="Dismiss" styleClass="reqFun"/>
+                                <h:commandButton value="Complete" styleClass="reqFun"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navBar">
+                <a>Line setup</a>
+                <a>Stoppages</a>
+                <a href="messages.xhtml">Messages and Requests</a>
+                <a>Performance and Efficiency</a>
+            </div>
+        </div>
+    </body>
+</html>

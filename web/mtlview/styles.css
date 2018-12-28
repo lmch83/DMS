@@ -1,0 +1,803 @@
+/* 
+    Author     : Lukasz Chlodnicki
+*/
+
+body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.content{
+    position: fixed;
+    left: 1%;
+    right: 1%;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    border: darkgreen;
+}
+
+.header{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    background-color: cornsilk;
+}
+
+.status{
+    position: relative;
+    top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100%;
+    height: 24px;
+    background-color: cornsilk;
+}
+
+.lineStatus{
+    position: relative;
+    top: 35px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100%;
+    height: 24px;
+    background-color: cornsilk; 
+}
+
+.mainArea{
+    position: relative;
+    top: 50px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100%;
+    height: 540px;
+    background-color: cornsilk; 
+}
+
+#sleft{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 33.33%;
+}
+
+#sleft label{
+    width: 100%;
+}
+
+#sleft a{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    position: relative;
+}
+
+#scenter{
+    width: 33.33%;
+    position: absolute;
+    left: 33.33%;
+    text-align: center;
+    top: 3px;
+}
+
+#sright{
+    position: absolute;
+    right: 4px;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+}
+
+
+#sright a{
+    text-decoration: none;
+    color: black;
+    background-color: lightskyblue;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+#sright a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+#sright a:hover, a:active {
+    box-shadow: 0px 3px 3px 3px lightcoral inset;
+}
+
+.navBar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.navBar a{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: lightskyblue;
+    width: 23%;
+    height: 29px;
+    margin-top: 4px;
+    display: inline-block;
+    margin-left: 21px;
+    padding-top: 6px;
+    font-weight: bold;
+}
+
+.navBar a:hover{
+    box-shadow: 0px 3px 3px 3px lightgreen inset;
+}
+
+.statusWord{
+    float: right;
+}
+
+.stTab{
+    width: 100%;
+    position: absolute;
+
+}
+
+.stTab table{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    position: absolute;
+    width: 50%;
+    top: 50px;
+    left: 25%;
+    border-spacing: 5px;
+}
+
+.stTab th{
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.stTab tr{
+    width: 100%;
+    position: relative;
+}
+
+.buttons{
+    position: absolute;
+    top: 180px;
+    left: 35%;
+    width: 100%;
+}
+
+.buttons a{
+    text-decoration: none;
+    color: black;
+    background-color: lightskyblue;
+    width: 100px;
+    height: 50px;
+    padding: 5px 5px 5px 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.actDow{
+    text-decoration: none;
+    color: black;
+    background-color: lightskyblue;
+    width: 150px;
+    height: 30px;
+    padding: 5px 5px 5px 5px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.actDow:hover{box-shadow: 0px 3px 3px 3px lightgreen inset;}
+
+.buttons a:hover{
+    box-shadow: 0px 3px 3px 3px lightgreen inset;
+}
+
+.stTab td{
+    position: relative;
+    width: 20%;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.stTab td select{
+    width: 100%;
+    height: 100%;
+}
+
+.requests{
+    position: relative;
+    display: inline-block;
+}
+
+.reqcontent{
+    display: none;
+    position: absolute;
+    margin-top: 1px;
+    z-index: 1;
+}
+
+.reqcontent .actDow{
+    float: none;
+    color: black;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.reqcontent .actDow:hover{background-color: lightgreen; color: white;}
+
+.requests:hover .reqcontent{display: block;}
+
+.requests:hover .dropreq{background-color: white;}
+
+.lsel{
+    height: 24px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 5px;
+}
+
+.currSt{
+
+    height: 100%;
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+.solution{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    position: absolute;
+    width: 50%;
+    top: 410px;
+    left: 25%;
+    border-spacing: 5px;
+}
+
+.viewBtn{
+    float: left;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 200px;
+    height: 30px;
+    background-color: lightskyblue;
+}
+
+.updateBtn{
+    float: right;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 200px;
+    height: 30px;
+    background-color: lightskyblue;
+}
+
+.viewBtn:hover{
+    box-shadow: 0px 3px 3px 3px lightgreen inset;
+}
+
+.updateBtn:hover{
+    box-shadow: 0px 3px 3px 3px yellow inset;
+}
+
+.solArea{
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mainLeft{
+    width: 48%;
+    height: 95%;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mainRight{
+    width: 48%;
+    height: 95%;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mlHead{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 24px;
+    margin-top: -20px;
+    text-align: center;
+    background-color: cornsilk;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mrHead{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 24px;
+    margin-top: -20px;
+    text-align: center;
+    background-color: cornsilk;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mlMessages{
+    width: 100%;
+    height: 10%;
+    margin-top: 12px;
+}
+
+.mlMessages table{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    position: absolute;
+    width: 100%;
+    border-spacing: 5px;
+}
+
+.mlMessages table{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    position: absolute;
+    width: 100%;
+    border-spacing: 5px;
+}
+
+.mlMessages table tbody{
+    display: block;
+    overflow: hidden auto;
+    height:200px;
+    width:100%;
+}
+
+.mlMessages table thead tr{
+    display: inline-block;
+    width: 100%;
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+.mlMessages table th{
+    left: 0;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mlMessages table td{
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    top: 20px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#tTime{
+    width: 80px;
+}
+#tFrom{
+    width: 150px;
+}
+#tMes{
+    width: 270px;
+}
+#tSta{
+    width: 100px;
+}
+
+.rdBtn{
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100%;
+    height: 30px;
+    background-color: lightskyblue;
+}
+
+.rdBtn:hover{box-shadow: 0px 3px 3px 3px lightgreen inset;}
+
+.mLeftNew{
+    position: absolute;
+    top: 300px;
+    left: 10px;
+    width: 100%;
+}
+
+.mBtn{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100px;
+    height: 30px;
+    background-color: lightskyblue;
+}
+
+.mBtn:hover{box-shadow: 0px 3px 3px 3px lightgreen inset;}
+
+.mrRequests{
+    width: 100%;
+    height: 10%;
+    margin-top: 12px;
+}
+
+.mrRequests table{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    position: absolute;
+    width: 100%;
+    border-spacing: 5px;
+}
+
+.mrRequests table tbody{
+    display: block;
+    overflow: hidden auto;
+    height:400px;
+    width:100%;
+}
+
+.mrRequests table thead tr{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#rSel:hover{
+    background-color: lightgreen;
+}
+
+#rIss:hover{
+    background-color: lightgreen;
+}
+
+.mrRequests table th{
+    left: 0;
+    height: 38px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mrRequests table tbody{
+    margin-top: -10px;
+}
+
+.mrRequests table td{
+    height: 30px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#rSel{
+    width: 50px;
+    padding-right: 13px;
+}
+#rLin{
+    width: 50px;
+}
+#rAre{
+    width: 120px;
+}
+#rIss{
+    width: 300px;
+}
+#rSta{
+    width: 80px;
+}
+
+.reqBtns{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    width: 95%;
+}
+
+.reqFun{
+    margin-right: 5px;
+    margin-left: 5px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 23%;
+    height: 30px;
+    background-color: lightskyblue;
+}
+
+.reqFun:hover{box-shadow: 0px 3px 3px 3px lightgreen inset;}
+
+.lineSel{
+    float: left;
+    padding-top: 2px;
+}
+
+.lsTop{
+    padding-top: 2px;
+}
+
+.mTop{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 98%;
+    height: 47%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.mBottom{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    width: 98%;
+    height: 47%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.topHead{
+    width: 100%;
+    height: 24px;
+    background-color: cornsilk;
+    text-align: center;
+    margin-top: -20px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.btmHead{
+    width: 100%;
+    height: 24px;
+    background-color: cornsilk;
+    text-align: center;
+    margin-top: -20px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.topContent{
+    position: absolute;
+    top: 30px;
+    width: 100%;
+}
+.topContent table{
+    position: absolute;
+}
+
+.topContent table tr th{
+    width: 110px;
+    height: 20px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.topContent table tr td{
+    width: 110px;
+    height: 20px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.scoreInput{
+    width: 100px;
+}
+
+.scrSub{
+
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100px;
+    height: 20px;
+    background-color: lightskyblue;
+    margin-left: 5px;
+}
+
+.scrSub:hover{
+    box-shadow: 0px 1px 1px 1px lightgreen inset;
+}
+
+.lwrContent{
+    position: absolute;
+    top: 140px;
+    width: 100%;
+
+}
+
+.lwrContent table{
+    position: absolute;
+    text-align: center;
+}
+
+#ln1 td{
+    width: 110px;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#ln2 td{
+    width: 110px;
+    height: 18px;
+    position: relative;
+    top: 25px;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#cp{
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+#hp{
+    position: relative;
+    top: -5px;
+    left: 10px;
+}
+
+.btmContent{
+    position: relative;
+    width: 100%;
+    top: 15px;
+}
+
+.topTab table{
+    width: 100%;
+    text-align: center;
+}
+
+.topTab table th{
+    width: 110px;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.topTab table td{
+    width: 110px;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.botTab table{
+    position: relative;
+    width: 100%;
+    bottom: 5px;
+    text-align: center;
+}
+
+#dur{
+    width: 15%;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#are{
+    width: 15%;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+#des{
+    width: 70%;
+    height: 18px;
+    position: relative;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+}
+
+.botTab label{
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+    font-size: 16px;
+}
+
+.refBtn{
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    box-shadow: 0 4px 8px 0 grey, 0 6px 20px 0 lightgrey;
+    width: 100px;
+    height: 95%;
+    background-color: lightskyblue;
+
+}
+
+.refBtn:hover{
+    box-shadow: 0px 1px 1px 1px lightgreen inset;
+}
+
+#area{width: 20%;}
+
+#strTim{width: 10%;}
+
+#fdes{width: 60%;}
+
+#fdur{width: 10%;}
+
+.desIn{width: 100%;}

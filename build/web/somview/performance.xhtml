@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head jsf:id="head">
+        <title>DMS - Stoppages</title>
+        <link href="styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body jsf:id="body">
+        <div class="content">
+            <div class="header">
+                <h3>Downtime management system - Performance and Efficiency</h3>
+            </div>
+            <div class="status">
+                <div id="sleft">
+                    <label><b>User name:</b> Lukasz Chlodnicki</label>
+                    <label><b>Role:</b> SOM</label><br></br>
+                </div>
+                <div id="scenter">
+                    <h:outputText id="date"></h:outputText>
+                    <script type="text/javascript">
+                        var dt = new Date();
+                        var da = dt.toString().slice(0, 21);
+                        document.getElementById("date").innerHTML = da;
+                    </script>
+                </div>
+                <div id="sright">
+                    <a href="/DMSv1.3/LogoutServlet">Log out</a>
+                </div>
+                <div class="lineStatus">
+                    <b><h:outputText value="Select line: " styleClass="lineSel" /></b>
+                    <h:form>
+                        <h:selectOneMenu valueChangeListener="#{dataBean.lineChanged}" onchange="submit();" styleClass="lsel">
+                            <f:selectItem id="a2" value="#{dataBean.updateLineStatus('B1')}" itemValue="#{dataBean.line}"/>                          
+                            <f:selectItem id="a3"  value="#{dataBean.updateLineStatus('B2')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a4"  value="#{dataBean.updateLineStatus('B3')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a5"  value="#{dataBean.updateLineStatus('B4')}" itemValue="#{dataBean.line}"/>
+                            <f:selectItem id="a6"  value="#{dataBean.updateLineStatus('B5')}" itemValue="#{dataBean.line}"/>
+                        </h:selectOneMenu>
+                        <b><h:outputText value="Line status: " styleClass="lsTop" /></b>
+                        <h:outputText id="statText" value="#{dataBean.currentStatus}" styleClass="currSt"/>
+                    </h:form>
+                </div>
+                <div class="mainArea">
+                    <div class="mTop">
+                        <div class="topHead">
+                            <h4>Performance</h4>
+                        </div>
+                        <div class="topContent">
+                            <table>
+                                <tr>
+                                    <th>08:00/20:00</th>
+                                    <th>09:00/21:00</th>
+                                    <th>10:00/22:00</th>
+                                    <th>11:00/23:00</th>
+                                    <th>12:00/00:00</th>
+                                    <th>13:00/01:00</th>
+                                    <th>14:00/02:00</th>
+                                    <th>15:00/03:00</th>
+                                    <th>16:00/04:00</th>
+                                    <th>17:00/05:00</th>
+                                    <th>18:00/06:00</th>
+                                    <th>19:00/07:00</th>  
+                                </tr>
+                                <tr>
+                                    <td><h:inputText id="h1i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h2i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h3i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h4i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h5i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h6i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h7i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h8i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h9i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h10i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h11i" styleClass="scoreInput"/></td>
+                                    <td><h:inputText id="h12i" styleClass="scoreInput"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                    <td><h:commandButton value="Submit" styleClass="scrSub" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="lwrContent">
+                            <label id="hp"><b>Hourly performance</b></label><br/>
+                            <table id="ln1">
+                                <tr>
+                                    <td><h:outputText id="h1o" /></td>
+                                    <td><h:outputText id="h2o" /></td>
+                                    <td><h:outputText id="h3o" /></td>
+                                    <td><h:outputText id="h4o" /></td>
+                                    <td><h:outputText id="h5o" /></td>
+                                    <td><h:outputText id="h6o" /></td>
+                                    <td><h:outputText id="h7o" /></td>
+                                    <td><h:outputText id="h8o" /></td>
+                                    <td><h:outputText id="h9o" /></td>
+                                    <td><h:outputText id="h10o" /></td>
+                                    <td><h:outputText id="h11o" /></td>
+                                    <td><h:outputText id="h12o" /></td>
+                                </tr>
+                            </table><br/>
+
+                            <label id="cp"><b>Cumulative performance</b></label><br/>
+                            <table id="ln2">
+                                <tr>
+                                    <td><h:outputText id="cm1" /></td>
+                                    <td><h:outputText id="cm2" /></td>
+                                    <td><h:outputText id="cm3" /></td>
+                                    <td><h:outputText id="cm4" /></td>
+                                    <td><h:outputText id="cm5" /></td>
+                                    <td><h:outputText id="cm6" /></td>
+                                    <td><h:outputText id="cm7" /></td>
+                                    <td><h:outputText id="cm8" /></td>
+                                    <td><h:outputText id="cm9" /></td>
+                                    <td><h:outputText id="cm10" /></td>
+                                    <td><h:outputText id="cm11" /></td>
+                                    <td><h:outputText id="cm12" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="mBottom">
+                        <div class="btmHead">
+                            <h4>Efficiency</h4>
+                        </div>
+                        <div class="btmContent">
+                            <div class="topTab">
+                                <table>
+                                    <tr>
+                                        <th>Bottle blower</th>
+                                        <th>Filler</th>
+                                        <th>Labeler</th>
+                                        <th>Case Packer</th>
+                                        <th>Palletiser</th>
+                                    </tr>
+                                    <tr>
+                                        <td><h:outputText /></td>
+                                        <td><h:outputText /></td>
+                                        <td><h:outputText /></td>
+                                        <td><h:outputText /></td>
+                                        <td><h:outputText /></td>
+                                    </tr>
+                                </table><br/>
+                            </div>
+                            <div class="botTab">
+                                <label><b>Top three issues:</b></label>
+                                <table>
+                                    <tr>
+                                        <th id="dur">Duration</th>
+                                        <th id="are">Area</th>
+                                        <th id="des">Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td id="dur"><h:outputText /></td>
+                                        <td id="are"><h:outputText /></td>
+                                        <td id="des"><h:outputText /></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="dur"><h:outputText /></td>
+                                        <td id="are"><h:outputText /></td>
+                                        <td id="des"><h:outputText /></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="dur"><h:outputText /></td>
+                                        <td id="are"><h:outputText /></td>
+                                        <td id="des"><h:outputText /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navBar">
+                <a>Line setup</a>
+                <a>Stoppages</a>
+                <a href="messages.xhtml">Messages and Requests</a>
+                <a href="performance.xhtml">Performance and Efficiency</a>
+            </div>
+        </div>
+    </body>
+</html>

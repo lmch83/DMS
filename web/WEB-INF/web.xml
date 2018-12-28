@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>/start.html</welcome-file>
+    </welcome-file-list>
+    <security-constraint>
+        <display-name>MTL access</display-name>
+        <web-resource-collection>
+            <web-resource-name>MTL view</web-resource-name>
+            <description/>
+            <url-pattern>/mtlview/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>MTL</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>SOM access</display-name>
+        <web-resource-collection>
+            <web-resource-name>SOM view</web-resource-name>
+            <description/>
+            <url-pattern>/somview/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>SOM</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>OPE access</display-name>
+        <web-resource-collection>
+            <web-resource-name>OPE view</web-resource-name>
+            <description/>
+            <url-pattern>/opeview/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>OPE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ETL access</display-name>
+        <web-resource-collection>
+            <web-resource-name>ETL view</web-resource-name>
+            <description/>
+            <url-pattern>/etlview/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ETL</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>Manufacture team leader</description>
+        <role-name>MTL</role-name>
+    </security-role>
+    <security-role>
+        <description>Shift operations manager</description>
+        <role-name>SOM</role-name>
+    </security-role>
+    <security-role>
+        <description>Machine operator</description>
+        <role-name>OPE</role-name>
+    </security-role>
+    <security-role>
+        <description>Engineering team leader</description>
+        <role-name>ETL</role-name>
+    </security-role>
+    
+</web-app>
